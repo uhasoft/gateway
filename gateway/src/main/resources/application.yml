@@ -1,0 +1,21 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        metadata:
+          version: 1.0
+    gateway:
+      routes:
+        - id: route-name
+          uri: lb://provider
+          predicates:
+            - Method=GET, POST
+            - Path=/**
+nacos:
+  config:
+    server-addr: 127.0.0.1:8848
